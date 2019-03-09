@@ -1,0 +1,25 @@
+{
+  "name": "steam-group-members",
+  "version": "1.0.0",
+  "description": "An NPM library to get a steam groups members list.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/b3none/steam-group-members.git"
+  },
+  "keywords": [
+    "steam"
+  ],
+  "author": "B3none",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/b3none/steam-group-members/issues"
+  },
+  "homepage": "https://github.com/b3none/steam-group-members#readme",
+  "dependencies": {
+    "xml2js": "^0.4.19"
+  }
+}
