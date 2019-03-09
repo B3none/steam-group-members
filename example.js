@@ -1,3 +1,3 @@
-const steamGroupMembers = require('./index');
+const steamGroup = require('./index');
 
-console.log(steamGroupMembers.test());
+steamGroup.getMembers('https://steamcommunity.com/groups/voidrealitygaming');
