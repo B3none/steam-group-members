@@ -24,3 +24,7 @@ steamGroup.getPageMembers(steamGroupUrl, 2)
 steamGroup.findMember(steamGroupUrl, '76561198028510846')
     .then(isMember => console.log(isMember));
 ```
+
+# Roadmap
+- Input parameter validation
+- Look at implementing a caching system
