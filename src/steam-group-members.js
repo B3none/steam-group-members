@@ -34,37 +34,36 @@ module.exports.getPageMembers = (url, page = 1) =>
     });
 
 module.exports.getMembers = url =>
-    new Promise(resolve => {
-        this.getPageMembers(url, 1).then(async response => {
-            let members = response.members;
+    new Promise(async resolve => {
+        let response = await this.getPageMembers(url, 1);
+        let members = response.members;
 
-            if (response.meta.totalPages >= 2) {
-                for (let i = 2; i <= response.meta.totalPages; i++) {
-                    let response = await this.getPageMembers(url, i);
-                    members = [...members, ...response.members]
-                }
+        if (response.meta.totalPages >= 2) {
+            for (let i = 2; i <= response.meta.totalPages; i++) {
+                response = await this.getPageMembers(url, i);
+                members = [...members, ...response.members]
             }
+        }
 
-            resolve(members);
-        });
+        resolve(members);
     });
 
 module.exports.findMember = (url, steamId) =>
-    new Promise(resolve => {
-        this.getPageMembers(url, 1).then(async response => {
-            if (response.members.includes(steamId)) {
-                resolve(true);
-            }
+    new Promise(async resolve => {
+        let response = await this.getPageMembers(url, 1);
 
-            if (response.meta.totalPages >= 2) {
-                for (let i = 2; i <= response.meta.totalPages; i++) {
-                    let response = await this.getPageMembers(url, i);
-                    if (response.members.includes(steamId)) {
-                        resolve(true);
-                    }
+        if (response.members.includes(steamId)) {
+            resolve(true);
+        }
+
+        if (response.meta.totalPages >= 2) {
+            for (let i = 2; i <= response.meta.totalPages; i++) {
+                response = await this.getPageMembers(url, i);
+                if (response.members.includes(steamId)) {
+                    resolve(true);
                 }
             }
+        }
 
-            resolve(false);
-        });
+        resolve(false);
     });
